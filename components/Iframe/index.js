@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+import { proxy } from '../../package.json';
 import Iframe from './styles';
 
 const Code = ({ component }) => {
@@ -11,11 +12,7 @@ const Code = ({ component }) => {
     setIsLoading(true);
     (async () => {
       console.log(component);
-      await axios.get(`/api/ui/${component}`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      });
+      await axios.get(`/api/ui/${component}`);
       setIsLoading(false);
     })();
   }, []);
@@ -23,7 +20,7 @@ const Code = ({ component }) => {
   return isLoading ? (
     <Loader />
   ) : (
-    <Iframe src={`http://localhost:5000/${component}.html`} frameBorder="0"></Iframe>
+    <Iframe src={`${proxy[process.env.NODE_ENV]}/${component}.html`} frameBorder='0'></Iframe>
   );
 };
 export default Code;
