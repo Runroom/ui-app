@@ -24,6 +24,10 @@ const structure = [
       {
         name: 'Skip links',
         slug: '/components/skip-links'
+      },
+      {
+        name: 'Lazy video',
+        slug: '/components/lazy-video'
       }
     ]
   },
