@@ -1,0 +1,1 @@
+{"ast":null,"code":"import styled from 'styled-components';\nvar Iframe = styled.iframe.withConfig({\n  displayName: \"styles__Iframe\",\n  componentId: \"sc-1nlluje-0\"\n})([\"border:1px solid #333;min-height:30rem;width:100%;\"]);\nexport default Iframe;","map":null,"metadata":{},"sourceType":"module"}

@@ -1,28 +1,28 @@
 import React from 'react';
 import { Link } from 'react-scroll'
 
-import { structure } from '../../config';
 import { capitalize } from '../../utils/helpers';
 import { Aside, NavList } from './styles';
 
 class Navigation extends React.Component {
   render() {
+    const { structure } = this.props;
 
     return (
       <Aside>
         <div className="title2">Sections</div>
         <NavList>
-          {structure.map(section => (
-            <li key={`${section.name}-key`}>
+          {Object.keys(structure).map(section => (
+            <li key={`${section}-key`}>
               <Link
-                to={section.name}
+                to={section}
                 spy={true}
                 smooth={true}
                 duration={350}
                 offset={-50}
                 activeClass='active'
               >
-                {capitalize(section.name)}
+                {capitalize(section)}
               </Link>
             </li>
           ))}
