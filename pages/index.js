@@ -18,13 +18,13 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/list`)
+    axios.get(`/list`)
       .then(({ data }) => {
-        console.log('Then');
+        console.log('Then ', data);
         this.setState({ loading: false, structure: data });
       })
       .catch(error => {
-        console.log(error);
+        console.log("error: ", error);
         this.setState({ loading: false, error: true });
       });
   }
@@ -32,7 +32,11 @@ class Home extends React.Component {
   render() {
     const { error, loading, structure } = this.state;
 
-    return error ? 'Couldn\'t retrieve project structure.' : !loading ? (
+    console.log("structure ", structure);
+    console.log("error ", error);
+    console.log("loading ", loading);
+
+    return loading ? 'Loading...' : error ? 'Couldn\'t retrieve project structure.' : (
       <Page title={pageTitle} variant="sidebar">
         <Navigation structure={structure} />
         <Wrapper>
@@ -60,7 +64,7 @@ class Home extends React.Component {
           ))}
         </Wrapper>
       </Page>
-    ) : 'Loading...';
+    );
   }
 };
 
