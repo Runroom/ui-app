@@ -12,7 +12,7 @@ const Code = ({ component }) => {
     setIsLoading(true);
     (async () => {
       console.log(component);
-      await axios.get(`/.netlify/functions/server/ui/${component}`);
+      await axios.get(`/.netlify/functions/server/components/${component}`);
       setIsLoading(false);
     })();
   }, []);
