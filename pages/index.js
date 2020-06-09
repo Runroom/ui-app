@@ -20,21 +20,15 @@ class Home extends React.Component {
   componentDidMount() {
     axios.get(`/list`)
       .then(({ data }) => {
-        console.log('Then ', data);
         this.setState({ loading: false, structure: data });
       })
       .catch(error => {
-        console.log("error: ", error);
         this.setState({ loading: false, error: true });
       });
   }
 
   render() {
     const { error, loading, structure } = this.state;
-
-    console.log("structure ", structure);
-    console.log("error ", error);
-    console.log("loading ", loading);
 
     return loading ? 'Loading...' : error ? 'Couldn\'t retrieve project structure.' : (
       <Page title={pageTitle} variant="sidebar">
