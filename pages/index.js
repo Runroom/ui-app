@@ -18,7 +18,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/list`)
+    axios.get(`/.netlify/functions/server/list`)
       .then(({ data }) => {
         this.setState({ loading: false, structure: data });
       })
