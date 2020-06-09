@@ -13,19 +13,26 @@ const pageTitle = 'UI Components library';
 class Home extends React.Component {
   state = {
     loading: true,
+    error: false,
     structure: {}
   }
 
   componentDidMount() {
-    axios.get(`/api/list`).then(({ data }) => {
-      this.setState({ loading: false, structure: data });
-    });
+    axios.get(`/api/list`)
+      .then(({ data }) => {
+        console.log('Then');
+        this.setState({ loading: false, structure: data });
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ loading: false, error: true });
+      });
   }
 
   render() {
-    const { loading, structure } = this.state;
+    const { error, loading, structure } = this.state;
 
-    return !loading ? (
+    return error ? 'Couldn\'t retrieve project structure.' : !loading ? (
       <Page title={pageTitle} variant="sidebar">
         <Navigation structure={structure} />
         <Wrapper>
