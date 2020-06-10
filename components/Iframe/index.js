@@ -5,22 +5,27 @@ import { proxy } from '../../package.json';
 import Iframe from './styles';
 
 const Code = ({ component }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const Loader = () => <div>Loading {component}.twig...</div>;
+  const Error = () => <div>Error {component}.twig!</div>;
 
   useEffect(() => {
-    setIsLoading(true);
     (async () => {
-      console.log(component);
-      await axios.get(`/.netlify/functions/server/components/${component}`);
-      setIsLoading(false);
+      try {
+        apiRes = await axios.get(`/.netlify/functions/server/components/${component}`);
+      } catch (err) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
     })();
   }, []);
 
   return isLoading ? (
     <Loader />
-  ) : (
-    <Iframe src={`${proxy[process.env.NODE_ENV]}/${component}.html`} frameBorder='0'></Iframe>
-  );
+  ) : isError ? <Error /> : (
+      <Iframe src={`${proxy[process.env.NODE_ENV]}/${component}.html`} frameBorder='0'></Iframe>
+    );
 };
 export default Code;
