@@ -13,8 +13,9 @@ const Code = ({ component }) => {
   useEffect(() => {
     (async () => {
       try {
-        apiRes = await axios.get(`/.netlify/functions/server/components/${component}`);
+        await axios.get(`/.netlify/functions/server/components/${component}`);
       } catch (err) {
+        console.error(err);
         setIsError(true);
       } finally {
         setIsLoading(false);
