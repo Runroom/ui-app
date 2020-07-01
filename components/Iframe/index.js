@@ -13,7 +13,7 @@ const Code = ({ component }) => {
   useEffect(() => {
     (async () => {
       try {
-        await axios.get(`/.netlify/functions/server/components/${component}`);
+        await axios.get(`/components/${component}`);
       } catch (err) {
         console.error(err);
         setIsError(true);
@@ -25,8 +25,10 @@ const Code = ({ component }) => {
 
   return isLoading ? (
     <Loader />
-  ) : isError ? <Error /> : (
-      <Iframe src={`${proxy[process.env.NODE_ENV]}/${component}.html`} frameBorder='0'></Iframe>
-    );
+  ) : isError ? (
+    <Error />
+  ) : (
+    <Iframe src={`${proxy[process.env.NODE_ENV]}/${component}.html`} frameBorder="0"></Iframe>
+  );
 };
 export default Code;
