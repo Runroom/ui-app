@@ -9,14 +9,12 @@ const Component = () => {
   const { slug } = router.query;
   const pageTitle = `${slug} component`;
 
-  return !slug ? (
-    <div></div>
-  ) : (
+  return slug ? (
     <Page title={pageTitle}>
       <h1>{pageTitle}</h1>
       <Iframe component={slug} />
     </Page>
-  );
+  ) : <div />;
 };
 
 export default Component;
