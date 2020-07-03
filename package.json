@@ -27,6 +27,6 @@
   },
   "proxy": {
     "development": "http://localhost:5000",
-    "production": "https://runroom-ui.netlify.app"
+    "production": "https://runroom-ui.netlify.app/.netlify/functions/server/"
   }
 }
