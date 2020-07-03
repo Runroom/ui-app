@@ -7,7 +7,7 @@ import GlobalStyles from '../styles/globals';
 import { theme } from '../config';
 import { proxy } from '../package.json';
 
-axios.defaults.baseURL = proxy[process.env.NODE_ENV];
+axios.defaults.baseURL = `${proxy[process.env.NODE_ENV]}/.netlify/functions/server`;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class MyApp extends App {
