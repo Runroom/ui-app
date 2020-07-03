@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport { proxy } from '../../package.json';\nimport Iframe from './styles';\n\nconst Code = ({\n  component\n}) => __jsx(Iframe, {\n  src: `${proxy[\"production\"]}/${component}.html`,\n  frameBorder: \"0\"\n});\n\nexport default Code;","map":null,"metadata":{},"sourceType":"module"}
