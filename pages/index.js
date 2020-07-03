@@ -21,7 +21,6 @@ class Home extends React.Component {
     axios
       .get(`/list`)
       .then(({ data }) => {
-        console.log(data);
         this.setState({ loading: false, structure: data });
       })
       .catch(error => {
